@@ -1,0 +1,13 @@
+week3:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: mvb41957.us-east-1
+      user: kironjayesh
+      password: Kiron123Fall@1857
+      role: ACCOUNTADMIN
+      database: ECOMMERCE
+      warehouse: COMPUTE_WH
+      schema: ECOMM
+      threads: 1
