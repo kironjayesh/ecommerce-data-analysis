@@ -1,5 +1,5 @@
 WITH product AS (
-    SELECT * FROM {{ source('ECOMM', 'RAW_ECOMMERCE_DATA') }}
+    SELECT * FROM {{ ref('stg_ecommerce_data') }}
 )
 
 SELECT
