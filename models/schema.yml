@@ -2,34 +2,111 @@ version: 2
 
 models:
   - name: dim_customer
+    description: "Dimension table containing information about customers."
     columns:
       - name: customerid
+        description: "Unique identifier for each customer."
         tests:
           - not_null
-  
+      - name: customername
+        description: "Full name of the customer."
+      - name: customercity
+        description: "City where the customer resides."
+      - name: customercountry
+        description: "Country where the customer resides."
+
   - name: dim_product
+    description: "Dimension table containing details about products."
     columns:
       - name: productid
+        description: "Unique identifier for each product."
         tests:
           - not_null
-  
+      - name: productname
+        description: "Name of the product."
+      - name: productcategory
+        description: "Category to which the product belongs."
+      - name: product_subcategory
+        description: "Subcategory of the product."
+
   - name: dim_date
+    description: "Dimension table that contains details about dates."
     columns:
       - name: date
+        description: "date"
         tests:
           - unique
           - not_null
-    
+      - name: dayofweek
+        description: "Day of the week for the date (e.g., Monday)."
+      - name: month
+        description: "Month of the year for the date."
+      - name: year
+        description: "Year for the date."
+      - name: Quarter
+        description: "Quarter of the year for the date."
+
   - name: stg_ecommerce_data
+    description: "Staging model that prepares raw ecommerce data for further transformation."
     columns:
       - name: transactionid
+        description: "Unique identifier for each transaction."
         tests:
           - unique
           - not_null
+      - name: date
+        description: "Date when the transaction occurred."
+      - name: customerid
+        description: "Identifier for the customer involved in the transaction."
+      - name: productid
+        description: "Identifier for the product involved in the transaction."
+      - name: quantity
+        description: "Number of units sold."
+      - name: total_amount
+        description: "Total amount of the transaction."
 
   - name: fact_sales
+    description: "Fact table containing transactional sales data."
     columns:
       - name: transactionid
+        description: "Unique identifier for each transaction."
         tests:
           - not_null
-  
+      - name: customerid
+        description: "Foreign key linking to the customer dimension."
+      - name: productid
+        description: "Foreign key linking to the product dimension."
+      - name: date
+        description: "Foreign key linking to the date dimension."
+      - name: quantity
+        description: "Number of units sold in the transaction."
+      - name: total_amount
+        description: "Total revenue generated from the transaction."
+
+  - name: product_category_sales
+    description: "Model calculates the total sales amount for each product category"
+    columns:
+      - name: productcategory
+        description: "Category of the product."
+      - name: total_sales_amount
+        description: "Total sales amount for the product category."
+
+  - name: product_subcategory_sales
+    description: "Model calculates the total sales amount for each product subcategory."
+    columns:
+      - name: productcategory
+        description: "The top product category in USA"
+      - name: productsubcategory
+        description: "Subcategories of the product category"
+      - name: total_sales
+        description: "Total sales amount for the product subcategory."
+
+  - name: top_products
+    description: "Model identifies the top 5 selling products in terms of quantity for customers in the United States."
+    columns:
+      - name: productname
+        description: "Name of the product."
+      - name: customercountry
+        description: "Name of the country aka USA."
+      - name: total_quantity
+        description: "Total number of units sold for the product." 
