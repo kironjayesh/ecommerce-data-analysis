@@ -5,7 +5,7 @@ week3:
       type: snowflake
       account: mvb41957.us-east-1
       user: kironjayesh
-      password: Kiron123Fall@1857
+      password: 
       role: ACCOUNTADMIN
       database: ECOMMERCE
       warehouse: COMPUTE_WH
