@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: dim_customer
+    columns:
+      - name: customerid
+        tests:
+          - not_null
+  
+  - name: dim_product
+    columns:
+      - name: productid
+        tests:
+          - not_null
+  
+  - name: dim_date
+    columns:
+      - name: date
+        tests:
+          - unique
+          - not_null
+    
+  - name: stg_ecommerce_data
+    columns:
+      - name: transactionid
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_sales
+    columns:
+      - name: transactionid
+        tests:
+          - not_null
+  

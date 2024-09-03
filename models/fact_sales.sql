@@ -38,5 +38,5 @@ SELECT
     dd.date,
     sd.total_sales_amount
 FROM sales_data as sd
-JOIN customer_dim cd ON sd.customerid = cd.customerid
+JOIN customer_dim cd ON sd.customerid = cd.customerid and sd.customername = cd.customername
 JOIN date_dim dd ON sd.date = dd.date
