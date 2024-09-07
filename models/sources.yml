@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: ECOMM
+    database: ECOMMERCE
+    schema: ECOMM
+    tables:
+      - name: RAW_ECOMMERCE_DATA
